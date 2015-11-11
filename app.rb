@@ -49,7 +49,7 @@ class Webhook < Sinatra::Base
     hash = {
       "fallback" => text,
       "channel" => "#test-command",
-      "color" => color(status)
+      "color" => color(status),
       "icon_emoji" => emoij(status),
       "username" => "Travis CI",
     }.to_json
