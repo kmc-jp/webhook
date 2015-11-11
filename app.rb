@@ -6,10 +6,26 @@ require 'net/https'
 WH_URI = ENV['SLACK_WH_URI']
 
 def status(str)
-  if str == 'pending'
+  if str == 'Pending'
     return 'started'
   else
     return 'started' + srr
+  end
+end
+
+def color(status)
+  if status == 'Pending' || status == 'Passed'
+    return 'good'
+  else
+    return 'danger'
+  end
+end
+
+def emoji(status)
+  if color(status) == 'danger'
+    retuen ":tohu_on_fire:"
+  else
+    return ":eye"
   end
 end
 
@@ -27,12 +43,15 @@ class Webhook < Sinatra::Base
   post '/travis' do
     p = JSON.parse(params[:payload])
     text = "Build #{p['number']} for #{p['repository']['owner_name']}/#{p['repository']['name']} #{status(p['status_message'])}\n#{p['message']}\n#{p['build_url']}"
+    status = p['status_message']
+
 #    text = "hello"
     hash = {
-     "text" => text,
-     "channel" => "#test-command",
-#     "icon_emoji" => ":scp_foundation:",
-     "username" => "Travis CI",
+      "fallback" => text,
+      "channel" => "#test-command",
+      "color" => color(status)
+      "icon_emoji" => emoij(status),
+      "username" => "Travis CI",
     }.to_json
 
     hash = "payload=" + hash
