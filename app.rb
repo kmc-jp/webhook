@@ -50,7 +50,7 @@ class Webhook < Sinatra::Base
       "fallback" => text,
       "channel" => "#test-command",
       "color" => color(status),
-      "icon_emoji" => emoij(status),
+      "icon_emoji" => emoji(status),
       "username" => "Travis CI",
     }.to_json
 
