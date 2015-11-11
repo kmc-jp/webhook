@@ -52,6 +52,13 @@ class Webhook < Sinatra::Base
       "color" => color(status),
       "icon_emoji" => emoji(status),
       "username" => "Travis CI",
+      "fields" => [
+        {
+          "title" => "poee",
+          "value" => "puee",
+          "short" => false
+        }
+      ]
     }.to_json
 
     hash = "payload=" + hash
