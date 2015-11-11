@@ -23,7 +23,7 @@ end
 
 def emoji(status)
   if color(status) == 'danger'
-    retuen ":tohu_on_fire:"
+    return ":tohu_on_fire:"
   else
     return ":eye"
   end
