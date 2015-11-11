@@ -1,0 +1,16 @@
+language: cpp
+compiler:
+  - gcc
+  - clang
+sudo: false
+install:
+  - echo ho
+script:
+  - echo ya
+
+notifications:
+  webhook:
+    urls:
+      - https://kmc-slack-webhook.herokuapp.com/travis
+    on_success: change
+    on_failure: always
