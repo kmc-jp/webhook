@@ -55,7 +55,7 @@ class Webhook < Sinatra::Base
       "fields" => [
         {
           "title" => "poee",
-          "value" => "puee",
+          "value" => text,
           "short" => false
         }
       ]
